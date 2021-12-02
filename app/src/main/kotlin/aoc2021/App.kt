@@ -11,9 +11,14 @@ fun main() {
 
 fun day2() {
     val positionCalculator = PositionCalculator()
-    val result = positionCalculator.calculatePosition("day2.txt")
+    val part1 = positionCalculator.calculatePosition("day2.txt")
 
-    println(result)
+    println("--- DAY 2 ---")
+    println(part1)
+
+    val part2 = positionCalculator.calculateCoordinate("day2.txt")
+
+    println(part2)
 }
 
 fun day1() {
@@ -22,6 +27,7 @@ fun day1() {
 
     val result = sweeper.numberOfIncreaseInDepth(input)
 
+    print("--- DAY 1 ---")
     println(result.toString())
 
     val sumResult = sweeper.sumOfMeasurementsInSlidingWindow(measurements = input)

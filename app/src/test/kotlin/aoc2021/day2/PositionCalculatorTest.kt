@@ -10,4 +10,8 @@ class PositionCalculatorTest : FunSpec({
         positionCalculator.calculatePosition("test-position-calculator.txt") shouldBe 150
     }
 
+    test("should calculate aim, horizontal position and depth") {
+        positionCalculator.calculateCoordinate("test-position-calculator.txt") shouldBe 900
+    }
+
 })
