@@ -36,10 +36,11 @@ class PositionCalculator {
 
 data class Position(val x: Int, val y: Int) {
     fun applyMovement(movement: Movement) : Position {
-        return when (movement.direction) {
-            Direction.FORWARD -> copy(x = x + movement.value)
-            Direction.DOWN -> copy(y = y + movement.value)
-            Direction.UP -> copy(y = y + -movement.value)
+        val (value, direction) = movement
+        return when (direction) {
+            Direction.FORWARD -> copy(x = x + value)
+            Direction.DOWN -> copy(y = y + value)
+            Direction.UP -> copy(y = y + -value)
         }
     }
 
@@ -50,10 +51,11 @@ data class Position(val x: Int, val y: Int) {
 
 data class Coordinate(val aim: Int, val position: Int, val depth: Int) {
     fun applyMovement(movement: Movement): Coordinate {
-        return when (movement.direction) {
-            Direction.FORWARD -> copy(position = position + movement.value, depth = depth + aim * movement.value)
-            Direction.DOWN -> copy(aim = aim + movement.value)
-            Direction.UP -> copy(aim = aim - movement.value)
+        val (value, direction) = movement
+        return when (direction) {
+            Direction.FORWARD -> copy(position = position + value, depth = depth + aim * value)
+            Direction.DOWN -> copy(aim = aim + value)
+            Direction.UP -> copy(aim = aim - value)
         }
     }
 
