@@ -11,8 +11,7 @@ fun main() {
 
 fun day2() {
     val positionCalculator = PositionCalculator()
-    val input = positionCalculator.loadMovements("day2.txt")
-    val result = positionCalculator.calculatePosition(input)
+    val result = positionCalculator.calculatePosition("day2.txt")
 
     println(result)
 }

@@ -3,7 +3,7 @@ package aoc2021.day2
 import aoc2021.asStream
 
 class PositionCalculator {
-    fun loadMovements(fileName: String): List<Movement> {
+    private fun loadMovements(fileName: String): List<Movement> {
         return fileName.asStream().readLines().map {
             val line = it.split(" ")
             Movement(
@@ -13,30 +13,26 @@ class PositionCalculator {
         }
     }
 
-    fun calculatePosition(movements: List<Movement>): Int {
-        var position = Position.INITIAL
+    fun calculatePosition(fileName: String): Int {
+        val movements = this.loadMovements(fileName)
 
-        for (movement in movements) {
-            position = applyMovement(position, movement)
+        val position = movements.fold(Position.INITIAL) { position, movement ->
+            applyMovement(position, movement)
         }
-        
+
         return position.x * position.y
     }
 
     private fun applyMovement(position: Position, movement: Movement): Position {
         return when (movement.direction) {
-            Direction.FORWARD -> position.add(movement.value, 0)
-            Direction.DOWN -> position.add(0, movement.value)
-            Direction.UP -> position.add(0, -movement.value)
+            Direction.FORWARD -> Position(position.x + movement.value, position.y + 0)
+            Direction.DOWN -> Position(position.x + 0, position.y + movement.value)
+            Direction.UP -> Position(position.x + 0, position.y + -movement.value)
         }
     }
 }
 
 data class Position(val x: Int, val y: Int) {
-    fun add(dx: Int, dy: Int): Position {
-        return Position(x + dx, y + dy)
-    }
-
     companion object {
         val INITIAL = Position(0, 0)
     }
